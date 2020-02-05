@@ -6,6 +6,8 @@ import { MainSiteComponent } from './components/main-site/main-site.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: MainSiteComponent}
+  //events
+  //members
 ];
 
 @NgModule({
