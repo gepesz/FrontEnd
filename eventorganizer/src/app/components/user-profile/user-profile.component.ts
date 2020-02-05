@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute,private userService: UserService) { }
 
   ngOnInit() {
-    const id =+this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
     this.userService.getUser(id).subscribe(resp => {
       this.user = resp.users[0];
       this.events = this.user.Events
