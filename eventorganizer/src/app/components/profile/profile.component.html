@@ -1,0 +1,22 @@
+<div class="row justify-content-center userProfile">
+    <div class="col-3">
+        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="rounded-circle userImg d-flex justify-content-center">
+    </div>
+    <div class="col-3 d-flex justify-content-center align-self-center">
+        <h1>{{user.username}}</h1>
+    </div>
+</div>
+
+<button type="button" class="btn btn-outline-secondary btn-lg btn-block" (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Események
+</button>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card collapseWindow">
+        <div class="card-body">
+            <app-event-list></app-event-list>
+        </div>
+    </div>
+</div>
+
+<hr>
