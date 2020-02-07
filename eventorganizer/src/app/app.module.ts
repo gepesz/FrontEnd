@@ -15,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogInModalComponent } from './components/log-in-modal/log-in-modal.component';
 import { RegistrationModalComponent } from './components/registration-modal/registration-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RegistrationModalComponent } from './components/registration-modal/regi
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     LogInModalComponent,
