@@ -1,10 +1,10 @@
 <div class="card">
-    <img class="card-img-left" src="" alt="Card image cap">
     <div class="card-body">
+        <img class="card-img-left" src="https://images.squarespace-cdn.com/content/55bd768ee4b08edc253b6551/1438822966851-3RYCPKV0JGVZB1CG9WPN/running-away.png?content-type=image%2Fpng" alt="Card image cap">
         <h5 class="card-title">{{event.title}}</h5>
-        <p class="card-text">{{event.describe}}</p>
-        <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.date}}</small></p>
-        <p class="card-text"><small class="text-muted">Létszám: min{{event.min}} max{{event.max}} </small></p>
+        <p class="card-text">{{event.description}}</p>
+        <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small></p>
+        <p class="card-text"><small class="text-muted">Létszám: min. {{event.minNumberOfPeople}} fő,  max. {{event.maxNumberOfPeople}} fő</small></p>
         <p class="card-text"><small class="text-muted">Költségek: {{event.price}}</small></p>
         <p class="card-text"><small class="text-muted">Kategória: {{event.category}}</small></p>
     </div>

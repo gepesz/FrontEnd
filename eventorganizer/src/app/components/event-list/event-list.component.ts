@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EventService } from '../../service/event.service';
 import { Subscription } from 'rxjs';
+import { Event } from '../../interfaces/event';
+
 
 @Component({
   selector: 'app-event-list',
@@ -19,6 +21,7 @@ export class EventListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.eventSubscription = this.eventService.getEvents().subscribe(
       events => {
+        console.log(`events.length: ${events.length}`)
         this.events = events;
       }
     )

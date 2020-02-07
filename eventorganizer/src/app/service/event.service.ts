@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EventResponse } from '../interfaces/event-response';
+import { Event } from '../interfaces/event';
 
 
 @Injectable({
@@ -36,7 +37,7 @@ export class EventService {
 
   private updateEvent(response: EventResponse) {
     if (response.success) {
-      //this.events.next(response.events);
+      this.events.next(response.events);
     }
   }
 
