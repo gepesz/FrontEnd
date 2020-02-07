@@ -1,12 +1,13 @@
 export interface Event {
     id?:number;
+    username?:string;
     creationDate:Date;
     eventStartDate: Date;
-    describe: string;
+    description: string;
     title:string;
     price?: number;
-    min?: number;
-    max?: number;
+    minNumberOfPeople?: number;
+    maxNumberOfPeople?: number;
     messages?:string[];
     category: string;
     active:boolean;
