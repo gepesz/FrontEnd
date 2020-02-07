@@ -1,6 +1,17 @@
 <app-header></app-header>
-<app-event-filter></app-event-filter>
-<div class="container pt-4">
-    <div app-event-card *ngFor='let e of events' [event]="e">
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5 scroll">
+            <app-event-filter></app-event-filter>
+            <div class="container pt-4">
+                <div app-event-card *ngFor='let e of events' [event]="e">
+                </div>
+                <p class="lead"></p>
+                <div class="height"></div>
+                <p class="lead mb-0"></p>
+            </div>
+
+        </div>
+
     </div>
 </div>

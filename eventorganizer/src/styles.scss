@@ -2,5 +2,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    background-color: #FFE48C;
+    background: url('https://cdn.hipwallpaper.com/i/98/30/D5VhEe.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
