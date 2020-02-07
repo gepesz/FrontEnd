@@ -1,1 +1,6 @@
-<p>event-list works!</p>
+<app-header></app-header>
+<app-event-filter></app-event-filter>
+<div class="container pt-4">
+    <div app-event-card *ngFor='let e of events' [event]="e">
+    </div>
+</div>

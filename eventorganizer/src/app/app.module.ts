@@ -8,6 +8,8 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { HeaderComponent } from './components/header/header.component';
 import { MainSiteComponent } from './components/main-site/main-site.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { EventFilterComponent } from './components/event-filter/event-filter.component';
+import { EventCardComponent } from './components/event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     EventListComponent,
     HeaderComponent,
     MainSiteComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    EventFilterComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,

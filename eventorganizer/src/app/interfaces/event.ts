@@ -1,4 +1,5 @@
 export interface Event {
+    title: string;
     date: Date;
     min?: number;
     max?: number;
