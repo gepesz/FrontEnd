@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventFilterComponent implements OnInit {
 
-  constructor() { }
+  search: string;
+
+  constructor() {
+    this.search = '';
+  }
 
   ngOnInit() {
   }

@@ -20,10 +20,7 @@ export class EventListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.eventSubscription = this.eventService.getEvents().subscribe(
-      events => {
-        console.log(`events.length: ${events.length}`)
-        this.events = events;
-      }
+      events => {this.events = events}
     )
   }
 
