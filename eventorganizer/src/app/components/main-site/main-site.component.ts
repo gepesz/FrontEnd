@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../../interfaces/event';
+import { MainSiteEventsService } from '../../service/main-site-events.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,12 +11,23 @@ import { Event } from '../../interfaces/event';
 })
 export class MainSiteComponent implements OnInit {
 
-  @Input()
-  event: Event;
+  events: Event[]; //3 elemű tömbre lesz szükség
+  eventSubscription: Subscription;
 
-  constructor() { }
+  constructor(private eventService: MainSiteEventsService) { 
+    this.events = [];
+  }
 
   ngOnInit() {
+    this.eventSubscription = this.eventService.getEvents().subscribe(
+      events => {
+        this.events = events;
+      }
+    )
+  }
+
+  ngOnDestroy() {
+    this.eventSubscription.unsubscribe();
   }
 
 }

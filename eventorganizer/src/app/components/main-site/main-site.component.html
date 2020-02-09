@@ -32,22 +32,12 @@
                 </p>
                 <hr>
                 <div>
-                    <h3>Legújabb események</h3>
+                    <h3>Legújabb események</h3><br>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="card-style">
-                            <app-event-card></app-event-card>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card-style">
-                            <app-event-card></app-event-card>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card-style">
-                            <app-event-card></app-event-card>
+                            <div app-event-card *ngFor='let e of events' [event]="e"></div>
                         </div>
                     </div>
                 </div>
