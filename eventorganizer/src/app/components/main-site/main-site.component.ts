@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Event } from '../../interfaces/event';
+
 
 @Component({
   selector: 'app-main-site',
@@ -6,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-site.component.scss']
 })
 export class MainSiteComponent implements OnInit {
+
+  @Input()
+  event: Event;
 
   constructor() { }
 
