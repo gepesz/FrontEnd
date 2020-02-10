@@ -1,31 +1,25 @@
-<div class="container">
-    <div class="row mt-5 mb-2 ml-1">
-        <div class="col">
-            <label for="search">Keresés</label>
-            <input id="search" type="text" class="form-control" [(ngModel)]="search">
-        </div>
-        <div class="col">
-            <label for="search">Kezdőidő dátum</label>
-            <input id="search" type="date" class="form-control" [(ngModel)]="search">
-        </div>
-        <div class="col">
-            <label for="search">Vég dátum</label>
-            <input id="search" type="date" class="form-control" [(ngModel)]="search">
-        </div>
-        
-        <div class="col">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputCategory">Kategóriák</label>
-                </div>
-                <select class="custom-select" id="inputCategory">
-                    <option selected>Choose...</option>
-                    <option value="1">Kulturális</option>
-                    <option value="2">Szabadidő</option>
-                    <option value="3">Sport</option>
-                    <option value="3">Turisztikai</option>
-                </select>
-            </div>
-        </div>
+<h3>Események szűrése</h3>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="search">Keresés</label>
+        <input type="text" class="form-control" id="search" [(ngModel)]="search">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="startDate">Intervallum kezdete</label>
+        <input type="date" class="form-control" id="startDate">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="endDate">Intervallum vége</label>
+        <input type="date" class="form-control" id="endDate">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputCategory">Kategóriák</label>
+        <select class="custom-select" id="inputCategory">
+            <option selected>Válassz...</option>
+            <option value="1">Kulturális</option>
+            <option value="2">Szabadidő</option>
+            <option value="3">Sport</option>
+            <option value="3">Turisztikai</option>
+        </select>
+      </div>
     </div>
-</div>
