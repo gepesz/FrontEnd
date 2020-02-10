@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class MainSiteComponent implements OnInit {
 
-  events: Event[]; //3 elemű tömbre lesz szükség
+  events: Event[];
   eventSubscription: Subscription;
 
   constructor(private eventService: MainSiteEventsService) { 
