@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../_password-validator/must-match.validator';
+import { UserService } from 'src/app/service/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration-modal',
@@ -12,12 +14,16 @@ export class RegistrationModalComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) { }
+  constructor(private formBuilder: FormBuilder,
+    public activeModal: NgbActiveModal,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -33,7 +39,14 @@ export class RegistrationModalComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    alert('Sikeres regisztráció!')
+
+    this.loading = true;
+
+    this.userService
+      .register(this.registerForm.value)
+        .pipe(first())
+          .subscribe(data => { this.activeModal.close()},
+                    error => { alert(error)});
   }
 
   close() {

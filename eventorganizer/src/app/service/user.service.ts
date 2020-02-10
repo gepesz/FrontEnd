@@ -21,6 +21,10 @@ export class UserService {
     }
   }
 
+  register(user:User){
+     return this.http.post(this.SERVER_URL + "/register", user);
+  }
+
   getUsers(): Observable<User[]> {
     this.http.get<UserResponse>(this.SERVER_URL + "/users" , {withCredentials: true})
       .subscribe(resp => this.updateUsers(resp));
