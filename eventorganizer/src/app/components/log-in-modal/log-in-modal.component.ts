@@ -21,7 +21,7 @@ export class LogInModalComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', Validators.required],
     });
   }
 
@@ -35,12 +35,11 @@ export class LogInModalComponent implements OnInit {
   
     this.loginService.logIn(this.loginForm.value.name, this.loginForm.value.password)
       .subscribe(
-        resp => this.router.navigateByUrl("/home"), 
+        resp => [this.router.navigateByUrl("/home"), this.activeModal.close()],
         error => console.log(error));
   }
 
   close() {
     this.activeModal.close();
   }
-
 }

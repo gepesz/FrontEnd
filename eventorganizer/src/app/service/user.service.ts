@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { UserResponse } from '../interfaces/user-response';
+import { Constants } from '../interfaces/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { UserResponse } from '../interfaces/user-response';
 export class UserService {
   
   private users: BehaviorSubject<User[]>
-  private readonly SERVER_URL = "http://192.168.1.53:8080";
+  private readonly SERVER_URL = Constants.hostName;
   constructor(private http: HttpClient) {
     this.users = new BehaviorSubject([]);
   }

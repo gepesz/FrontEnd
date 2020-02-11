@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EventResponse } from '../interfaces/event-response';
 import { Event } from '../interfaces/event';
+import { Constants } from '../interfaces/constants';
 
 
 @Injectable({
@@ -12,8 +13,8 @@ import { Event } from '../interfaces/event';
 export class EventService {
 
   private events: BehaviorSubject<Event[]>;
-  private readonly GETEVENTS_URL = 'http://192.168.0.10:8080/events';
-  private readonly GETFILTEREDEVENTS_URL = 'http://192.168.0.10:8080/eventsfilter';
+  private readonly GETEVENTS_URL = Constants.hostName + '/events';
+  private readonly GETFILTEREDEVENTS_URL = Constants.hostName + '/eventsfilter';
 
   constructor(private http: HttpClient) {
     this.events = new BehaviorSubject([]);
