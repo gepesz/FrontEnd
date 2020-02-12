@@ -20,11 +20,9 @@ export class LoginServiceService {
   constructor(private http: HttpClient, private router: Router) { }
 
   logIn(uname: string, pwd: string): Observable<Object> {
-    console.log(Constants.hostName)
     let fd = new FormData();
     fd.append('username', uname);
     fd.append('password', pwd);
-    this.loggedIn.next(true);
     return this.http.post<Object>(
       this.SERVER_URL,
       fd,
@@ -35,5 +33,9 @@ export class LoginServiceService {
   logout() {
     this.loggedIn.next(false);
     this.router.navigateByUrl("/home");
+  }
+
+  getLogIn(){
+    this.loggedIn.next(true);
   }
 }
