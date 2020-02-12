@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.loginService.logout();
+      alert("Sikeres kijelentkezés");
   }
 
 }
