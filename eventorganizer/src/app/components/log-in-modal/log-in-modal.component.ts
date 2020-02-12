@@ -35,7 +35,7 @@ export class LogInModalComponent implements OnInit {
   
     this.loginService.logIn(this.loginForm.value.name, this.loginForm.value.password)
       .subscribe(
-        resp => [this.router.navigateByUrl("/home"), this.activeModal.close()],
+        resp => {this.router.navigateByUrl("/home"), this.activeModal.close()}, 
         error => console.log(error));
   }
 

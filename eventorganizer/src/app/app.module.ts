@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogInModalComponent } from './components/log-in-modal/log-in-modal.component';
 import { RegistrationModalComponent } from './components/registration-modal/registration-modal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LogInModalComponent,
     RegistrationModalComponent,
     ProfileComponent,
-    MembersComponent
+    MembersComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

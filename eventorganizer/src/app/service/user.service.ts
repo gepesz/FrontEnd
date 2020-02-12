@@ -4,6 +4,7 @@ import { User } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { UserResponse } from '../interfaces/user-response';
 import { Constants } from '../interfaces/constants';
+import { UsersResponse } from '../interfaces/users-response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
     this.users = new BehaviorSubject([]);
   }
   
-  private updateUsers(response: UserResponse){
+  private updateUsers(response: UsersResponse){
     if(response.success){
       this.users.next(response.users);
     }
@@ -27,7 +28,7 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    this.http.get<UserResponse>(this.SERVER_URL + "/users" , {withCredentials: true})
+    this.http.get<UsersResponse>(this.SERVER_URL + "/users" , {withCredentials: true})
       .subscribe(resp => this.updateUsers(resp));
       return this.users;
        
@@ -36,7 +37,11 @@ export class UserService {
   
   getUser(id:number): Observable<UserResponse> {
     //TODO
-    return this.http.get<UserResponse>(this.SERVER_URL +  '/users/?id=' + id ,{withCredentials: true});
+    return this.http.get<UserResponse>(this.SERVER_URL +  '/users/' + id ,{withCredentials: true});
+  }
+
+  getMyUser(): Observable<UserResponse>{
+    return this.http.get<UserResponse>(this.SERVER_URL + '/users/myprofile' , {withCredentials:true});
   }
 
 }

@@ -5,13 +5,15 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { EventListComponent } from './components/event-list/event-list.component';
 import { MembersComponent } from './components/members/members.component';
 import { AuthGuard } from './guard/auth.guard';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]},
   {path: 'home', component: MainSiteComponent},
-  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'users/:id/user-profile', component: UserProfileComponent},
   {path: 'event-list', component:EventListComponent},
-  {path: 'members', component: MembersComponent}
+  {path: 'members', component: MembersComponent},
+  {path: 'users/my-profile', component: MyProfileComponent}
 ];
 
 @NgModule({

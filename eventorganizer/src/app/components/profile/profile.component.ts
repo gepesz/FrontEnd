@@ -17,7 +17,11 @@ export class ProfileComponent implements OnInit {
   user: User;
   
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+    this.user = {
+      username: ''
+    }
+   }
 
   ngOnInit() {
   }
