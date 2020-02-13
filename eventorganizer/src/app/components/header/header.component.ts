@@ -5,6 +5,7 @@ import { RegistrationModalComponent } from '../registration-modal/registration-m
 import { Observable } from 'rxjs';
 import { LoginServiceService } from 'src/app/service/login-service.service';
 import { Router } from '@angular/router';
+import { LogoutSuccessModalComponent } from '../logout-success-modal/logout-success-modal.component';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.loginService.logout();
-      alert("Sikeres kijelentkezés");
+    this.modalService.open(LogoutSuccessModalComponent);
   }
 
 }
