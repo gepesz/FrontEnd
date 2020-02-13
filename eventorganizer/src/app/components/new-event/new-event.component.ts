@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewEventService } from 'src/app/service/new-event.service';
 import { NewEvent } from '../../interfaces/new-event';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Constants } from 'src/app/interfaces/constants';
 import { Category } from 'src/app/interfaces/category';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-event',
@@ -15,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class NewEventComponent implements OnInit {
 
   event: NewEvent;
-  private readonly SERVER_URL = Constants.hostName + "/categories";
+  private readonly SERVER_URL = environment.serverUrl + "/categories";
   categories: Category[];
 
   constructor(public router: Router, private eventService: NewEventService, private http: HttpClient) { 
@@ -31,7 +30,7 @@ export class NewEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get<any>(this.SERVER_URL).subscribe( cats => this.categories = cats.categories );
+    this.http.get<any>(this.SERVER_URL).subscribe( cats => this.categories = cats.categories ); //todo new service
   }
 
   saveEvent(): void{

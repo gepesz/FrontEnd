@@ -4,8 +4,8 @@
         <div class="card-body p-5 scroll">
             <app-event-filter></app-event-filter>
             <div>
-                <h3>Új esemény létrehozása</h3>
-                <button type="button" class="btn btn-dark" routerLink="/new-event">Létrehozás</button>
+                <h3 class="newEvent" *ngIf="isLoggedIn$ | async">Új esemény létrehozása</h3>
+                <button type="button" class="btn btn-dark" routerLink="/new-event" *ngIf="isLoggedIn$ | async">Létrehozás</button>
             </div>
         </div>
         <div class="container">

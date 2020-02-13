@@ -13,9 +13,7 @@ export class NewEventService {
   private readonly SERVER_URL = environment.serverUrl + "/events/create";
   private events: BehaviorSubject<NewEvent[]>;
 
-  constructor(private http: HttpClient) { 
-    //this.events = new BehaviorSubject([]);
-  }
+  constructor(private http: HttpClient) { }
 
   addEvent(e: NewEvent): void{
     this.http.post<NewEventResponse>(

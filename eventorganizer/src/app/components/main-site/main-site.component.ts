@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event } from '../../interfaces/event';
 import { MainSiteEventsService } from '../../service/main-site-events.service';
 import { Subscription } from 'rxjs';
