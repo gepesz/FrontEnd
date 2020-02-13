@@ -18,6 +18,7 @@ import { RegistrationModalComponent } from './components/registration-modal/regi
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { LogoutSuccessModalComponent } from './components/logout-success-modal/logout-success-modal.component';
+import { NewEventComponent } from './components/new-event/new-event.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LogoutSuccessModalComponent } from './components/logout-success-modal/l
     ProfileComponent,
     MembersComponent,
     MyProfileComponent,
-    LogoutSuccessModalComponent
+    LogoutSuccessModalComponent,
+    NewEventComponent
   ],
   imports: [
     BrowserModule,

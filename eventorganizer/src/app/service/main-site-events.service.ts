@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class MainSiteEventsService {
 
   private events: BehaviorSubject<Event[]>;
-  private readonly SERVER_URL = environment.serverUrl + "/home"
+  private readonly SERVER_URL = environment.serverUrl + "/home";
 
   constructor(private http: HttpClient) { 
     this.events = new BehaviorSubject([])
