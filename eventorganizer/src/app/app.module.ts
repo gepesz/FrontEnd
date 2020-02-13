@@ -16,6 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LogInModalComponent } from './components/log-in-modal/log-in-modal.component';
 import { RegistrationModalComponent } from './components/registration-modal/registration-modal.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { LogoutSuccessModalComponent } from './components/logout-success-modal/logout-success-modal.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LogInModalComponent,
     RegistrationModalComponent,
     ProfileComponent,
-    MembersComponent
+    MembersComponent,
+    MyProfileComponent,
+    LogoutSuccessModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   entryComponents: [
     LogInModalComponent,
-    RegistrationModalComponent
+    RegistrationModalComponent,
+    LogoutSuccessModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

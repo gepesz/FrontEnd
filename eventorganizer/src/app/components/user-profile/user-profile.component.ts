@@ -14,13 +14,18 @@ export class UserProfileComponent implements OnInit {
   user: User;
   events : Event[];
 
-  constructor(private route: ActivatedRoute,private userService: UserService) { }
+  constructor(private route: ActivatedRoute,private userService: UserService) { 
+    this.user = {
+      username: '',
+      id: 0,
+    }
+  }
 
   ngOnInit() {
-    //TODO most be van írva hogy az egyes id-ju felhasználót kérje le.
-    //const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(1).subscribe(resp => {
-      this.user = resp.users[0];
+    
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.getUser(id).subscribe(resp => {
+      this.user = resp.user;
       this.events = this.user.Events
     })
   }

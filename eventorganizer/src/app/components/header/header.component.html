@@ -8,12 +8,14 @@
                 <a class="nav-link" routerLink='/event-list'>Események</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/members">Tagok</a>
+                <a class="nav-link" routerLink="/members" *ngIf="isLoggedIn$ | async">Tagok</a>
             </li>
         </ul>
         <div class="form-inline">
-            <button class="btn" (click)="getLogIn()">Bejelentkezés</button>
-            <button class="btn" (click)="getRegistration()">Regisztráció</button>
+            <button class="btn" (click)="getLogIn()" *ngIf="!(isLoggedIn$ | async)">Bejelentkezés</button>
+            <button class="btn" (click)="onLogout()" *ngIf="isLoggedIn$ | async">Kijelentkezés</button>
+            <button class="btn" (click)="getRegistration()" *ngIf="!(isLoggedIn$ | async)">Regisztráció</button>
+            <button class="btn" routerLink="/users/my-profile" *ngIf="isLoggedIn$ | async">Profilom</button>
         </div>
     </div>
 </nav>

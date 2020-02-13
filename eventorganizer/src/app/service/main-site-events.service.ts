@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { EventResponse } from '../interfaces/event-response';
 import { Event } from '../interfaces/event';
-import { Constants } from '../interfaces/constants';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { Constants } from '../interfaces/constants';
 export class MainSiteEventsService {
 
   private events: BehaviorSubject<Event[]>;
-  private readonly SERVER_URL = Constants.hostName + "/home"
+  private readonly SERVER_URL = environment.serverUrl + "/home"
 
   constructor(private http: HttpClient) { 
     this.events = new BehaviorSubject([])

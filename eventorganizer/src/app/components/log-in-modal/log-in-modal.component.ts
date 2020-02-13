@@ -14,6 +14,7 @@ export class LogInModalComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
+  error = '';
 
   constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private loginService: LoginServiceService,
     private router: Router) {  }
@@ -21,7 +22,7 @@ export class LogInModalComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', Validators.required],
     });
   }
 
@@ -35,12 +36,11 @@ export class LogInModalComponent implements OnInit {
   
     this.loginService.logIn(this.loginForm.value.name, this.loginForm.value.password)
       .subscribe(
-        resp => this.router.navigateByUrl("/home"), 
-        error => console.log(error));
+        resp => {this.router.navigateByUrl("/home"), this.activeModal.close(), this.loginService.getLogIn()}, 
+        error => this.error = error);
   }
 
   close() {
     this.activeModal.close();
   }
-
 }

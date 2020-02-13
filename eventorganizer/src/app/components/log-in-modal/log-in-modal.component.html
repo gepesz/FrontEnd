@@ -18,14 +18,13 @@
                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Jelszó megadása kötelező</div>
-                            <div *ngIf="f.password.errors.minlength">A jelszónak legalább 6 karakternek kell lennie
-                            </div>
                         </div>
                     </div>
                     <div>
                         <button class="btn btn-primary btn-block my-4">Belépés</button>
                         <button class="btn btn-secondary btn-block my-4" (click)="close()">Mégsem</button>
                     </div>
+                    <div *ngIf="error" class="alert alert-danger">Hibás felhasználó név vagy jelszó</div>
                 </form>
             </div>
         </div>
