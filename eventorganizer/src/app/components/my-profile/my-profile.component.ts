@@ -12,7 +12,6 @@ export class MyProfileComponent implements OnInit {
   user:User;
   events:Event[];
 
-
   constructor(private userService: UserService) {
     this.user = {
       username:'',
@@ -23,7 +22,5 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyUser().subscribe(user => this.user = user.user);
     this.events = this.user.Events;
-    console.log(this.user)
   }
-
 }

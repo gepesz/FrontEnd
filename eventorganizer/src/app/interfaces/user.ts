@@ -1,6 +1,6 @@
 export interface User {
     id?:number;
-    img?: Blob;
+    pictureId?: number;
     username: string;
     email?:string;
     registrationDate?:string;

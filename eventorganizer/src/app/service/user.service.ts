@@ -3,8 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { UserResponse } from '../interfaces/user-response';
-import { Constants } from '../interfaces/constants';
 import { UsersResponse } from '../interfaces/users-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { UsersResponse } from '../interfaces/users-response';
 export class UserService {
   
   private users: BehaviorSubject<User[]>
-  private readonly SERVER_URL = Constants.hostName;
+  private readonly SERVER_URL = environment.serverUrl;
   constructor(private http: HttpClient) {
     this.users = new BehaviorSubject([]);
   }
@@ -34,7 +34,6 @@ export class UserService {
        
   }
   
-  
   getUser(id:number): Observable<UserResponse> {
     //TODO
     return this.http.get<UserResponse>(this.SERVER_URL +  '/users/' + id ,{withCredentials: true});
@@ -44,4 +43,7 @@ export class UserService {
     return this.http.get<UserResponse>(this.SERVER_URL + '/users/myprofile' , {withCredentials:true});
   }
 
+  sendPhoto(uploadData: FormData){
+    return this.http.post(`${ environment.serverUrl }/createphoto`, uploadData, {withCredentials: true})
+  }
 }

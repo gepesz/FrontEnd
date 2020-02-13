@@ -15,7 +15,7 @@
             <button class="btn" (click)="getLogIn()" *ngIf="!(isLoggedIn$ | async)">Bejelentkezés</button>
             <button class="btn" (click)="onLogout()" *ngIf="isLoggedIn$ | async">Kijelentkezés</button>
             <button class="btn" (click)="getRegistration()" *ngIf="!(isLoggedIn$ | async)">Regisztráció</button>
-            <button class="btn" routerLink="user-profile" *ngIf="isLoggedIn$ | async">Profilom</button>
+            <button class="btn" routerLink="/users/my-profile" *ngIf="isLoggedIn$ | async">Profilom</button>
         </div>
     </div>
 </nav>

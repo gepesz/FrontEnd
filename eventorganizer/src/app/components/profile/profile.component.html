@@ -2,22 +2,31 @@
     <div class="card-body p-8">
         <div class="row justify-content-center userProfile">
             <div class="col-3">
-                <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                <img src="{{environment.serverUrl}}/users/picture/{{user.pictureId}}"
                     class="rounded-circle userImg d-flex justify-content-center"
                     routerLink="/users/{{user.id}}/user-profile">
+                <div *ngIf="router.url === '/users/my-profile'">
+                    <div class="pb-1"></div>
+                    <input
+                    style="display: none"
+                    type="file" (change)="onFileChanged($event)"
+                    #fileInput>
+                  <button (click)="fileInput.click()">Kép csere és feltőltés.</button>
+                </div>
             </div>
             <div class="col-3 d-flex justify-content-center align-self-center">
                 <h1>{{user.username}}</h1>
             </div>
         </div>
-        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" (click)="isCollapsed = !isCollapsed"
+        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" (click)="isCollapsed = !isCollapsed; getEvents()"
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
             Események
         </button>
         <div id="collapseExample" [ngbCollapse]="isCollapsed">
             <div class="card collapseWindow shadow">
                 <div class="card-body">
-                    <app-event-list></app-event-list>
+                    <app-event-filter></app-event-filter>
+                    <div app-event-card *ngFor="let event of myEvent" [event]="event"></div> 
                 </div>
             </div>
         </div>
