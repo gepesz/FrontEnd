@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserResponse } from '../interfaces/user-response';
 import { UsersResponse } from '../interfaces/users-response';
 import { environment } from 'src/environments/environment';
+import { PictureResponse } from '../interfaces/picture-response';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class UserService {
     return this.http.get<UserResponse>(this.SERVER_URL + '/users/myprofile' , {withCredentials:true});
   }
 
-  sendPhoto(uploadData: FormData){
-    return this.http.post(`${ environment.serverUrl }/createphoto`, uploadData, {withCredentials: true})
+  sendPhoto(uploadData: FormData): Observable<PictureResponse>{
+    return this.http.post<PictureResponse>(`${ environment.serverUrl }/createphoto`, uploadData, {withCredentials: true})
   }
 }

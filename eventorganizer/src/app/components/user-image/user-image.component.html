@@ -1,0 +1,9 @@
+<div class="col-4">
+    <img src="{{environment.serverUrl}}/users/picture/{{user.pictureId}}"
+        class="rounded-circle userImg d-flex justify-content-center" routerLink="/users/{{user.id}}/user-profile">
+    </div>
+    <div *ngIf="router.url === '/users/my-profile'">
+        <div class="pb-1"></div>
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <button (click)="fileInput.click()">Kép csere és feltöltés.</button>
+    </div>

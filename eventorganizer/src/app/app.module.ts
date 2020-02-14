@@ -19,6 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { LogoutSuccessModalComponent } from './components/logout-success-modal/logout-success-modal.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
+import { UserImageComponent } from './components/user-image/user-image.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { NewEventComponent } from './components/new-event/new-event.component';
     MembersComponent,
     MyProfileComponent,
     LogoutSuccessModalComponent,
-    NewEventComponent
+    NewEventComponent,
+    UserImageComponent
   ],
   imports: [
     BrowserModule,

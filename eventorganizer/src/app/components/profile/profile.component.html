@@ -1,32 +1,24 @@
 <div class="card border-0 bcg-color">
     <div class="card-body p-8">
         <div class="row justify-content-center userProfile">
-            <div class="col-3">
-                <img src="{{environment.serverUrl}}/users/picture/{{user.pictureId}}"
-                    class="rounded-circle userImg d-flex justify-content-center"
-                    routerLink="/users/{{user.id}}/user-profile">
-                <div *ngIf="router.url === '/users/my-profile'">
-                    <div class="pb-1"></div>
-                    <input
-                    style="display: none"
-                    type="file" (change)="onFileChanged($event)"
-                    #fileInput>
-                  <button (click)="fileInput.click()">Kép csere és feltőltés.</button>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-center align-self-center">
-                <h1>{{user.username}}</h1>
+            <app-user-image [user]="user"></app-user-image>
+            <div class="col-4 d-flex justify-content-center align-self-center">
+                <h2>{{user.username}}<h4>
+                        <p>{{user.email}}</p>
+                    </h4>
+                </h2>
             </div>
         </div>
-        <button type="button" class="btn btn-outline-secondary btn-lg btn-block" (click)="isCollapsed = !isCollapsed; getEvents()"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        <button type="button" class="btn btn-outline-secondary btn-lg btn-block"
+            (click)="isCollapsed = !isCollapsed; getEvents()" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
             Események
         </button>
         <div id="collapseExample" [ngbCollapse]="isCollapsed">
-            <div class="card collapseWindow shadow">
+            <div class="card collapseWindow shadow bg-secondary">
                 <div class="card-body">
                     <app-event-filter></app-event-filter>
-                    <div app-event-card *ngFor="let event of myEvent" [event]="event"></div> 
+                    <div app-event-card *ngFor="let event of myEvent" [event]="event"></div>
                 </div>
             </div>
         </div>
