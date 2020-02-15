@@ -12,7 +12,7 @@ hr {
 }
 
 .card-style {
-    width: 700px;
+    width: 950px;
 }
 
 .cards {
@@ -29,3 +29,41 @@ img {
 .intro {
     margin-top: 20px;
 }
+
+.carousel-inner img {
+    width: 100%;
+    height: 600px;
+}
+
+.panel-transparent {
+    background: none;
+}
+
+.panel-transparent .panel-heading{
+    background: rgba(252, 252, 252, 0.623)!important;
+    height: 200px;
+    width: 300px;
+    vertical-align: middle;
+}
+
+.carousel-caption {
+    right: 20%;
+    text-align: left;
+    max-width: 200px;
+    left: auto;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    font-family: "Bodoni MT";
+    font-size: 25pt;
+    color: rgb(39, 34, 104);
+    text-align: center;
+}
+
+a {
+    text-decoration: underline;
+    color: rgb(39, 34, 104);
+}
+

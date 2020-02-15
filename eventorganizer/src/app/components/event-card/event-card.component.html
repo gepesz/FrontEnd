@@ -1,21 +1,36 @@
-<div class="card">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img class="card-img-left"
-                src="https://images.squarespace-cdn.com/content/55bd768ee4b08edc253b6551/1438822966851-3RYCPKV0JGVZB1CG9WPN/running-away.png?content-type=image%2Fpng"
-                alt="Card image cap">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{event.title}}</h5>
-                <p class="card-text">{{event.description}}</p>
-                <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small></p>
-                <p class="card-text"><small class="text-muted">Létszám: min. {{event.minNumberOfPeople}} fő, max.
-                        {{event.maxNumberOfPeople}} fő</small></p>
-                <p class="card-text"><small class="text-muted">Költségek: {{event.price}}</small></p>
-                <p class="card-text"><small class="text-muted">Kategória: {{event.category}}</small></p>
+<div class="container">
+    <div class="card">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="assets/img/friends.JPG"><br>
+                <button class="btn btn-secondary">Kép feltöltése</button>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.title}}</h5>
+                    <p class="card-text">{{event.description}}</p>
+                    <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small>
+                    </p>
+                    <p class="card-text"><small class="text-muted">Létszám: min. {{event.minNumberOfPeople}} fő, max.
+                            {{event.maxNumberOfPeople}} fő</small></p>
+                    <p class="card-text"><small class="text-muted">Költségek: {{event.price}} Ft</small></p>
+                    <p class="card-text"><small class="text-muted">Kategória: {{event.categoryName}}</small></p>
+                    <hr>                  
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Jelentkezés</button><br>
+                    <button type="button" class="btn btn-dark btn-lg btn-block"
+                        (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                        aria-controls="collapseExample">Hozzászólás</button>
+                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                        <div class="card collapseWindow shadow bg-secondary">
+                            <div class="card-body">
+                                <textarea class="message" cols="30" rows="10"></textarea>
+                                <textarea class="userMessage" cols="30" rows="3" placeholder="Írd ide az üzeneted"></textarea>
+                                <button class="btn btn-primary">Küldés</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>           
             </div>
         </div>
     </div>
 </div>
-

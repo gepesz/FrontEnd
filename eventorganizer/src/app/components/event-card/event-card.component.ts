@@ -8,6 +8,8 @@ import { Event } from '../../interfaces/event';
 })
 export class EventCardComponent implements OnInit {
 
+  public isCollapsed = true;
+
   @Input()
   event: Event;
 
@@ -15,5 +17,7 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
 }

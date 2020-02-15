@@ -7,5 +7,5 @@ export interface Event {
     price?: number;
     minNumberOfPeople?: number;
     maxNumberOfPeople?: number;
-    category?: string;
+    categoryName?: string;
 }
