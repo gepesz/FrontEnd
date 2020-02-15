@@ -48,4 +48,12 @@ export class EventService {
     return this.events;
   }
 
+  public modifyEvent(id: number, e: Event): void {
+    this.http.patch<EventResponse>(
+      this.SERVER_URL + 'events/modify/' + id,
+      { event: e },
+      { withCredentials: true }
+    ).subscribe(resp => this.updateEvent(resp));
+  }
+
 }

@@ -1,5 +1,9 @@
 <div class="container">
     <div class="card">
+        <div class="card-header">
+            <h2>{{event.title}}</h2>
+            <h5>Jelentkezők száma: 0/{{event.maxNumberOfPeople}} fő</h5>
+         </div>
         <div class="row no-gutters">
             <div class="col-md-4">
                 <img src="assets/img/friends.JPG"><br>
@@ -7,29 +11,29 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{event.title}}</h5>
+                    <!--h5 class="card-title">{{event.title}}</h5-->
                     <p class="card-text">{{event.description}}</p>
-                    <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small>
-                    </p>
+                    <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small></p>
                     <p class="card-text"><small class="text-muted">Létszám: min. {{event.minNumberOfPeople}} fő, max.
                             {{event.maxNumberOfPeople}} fő</small></p>
                     <p class="card-text"><small class="text-muted">Költségek: {{event.price}} Ft</small></p>
                     <p class="card-text"><small class="text-muted">Kategória: {{event.categoryName}}</small></p>
-                    <hr>                  
+                    <hr>
                     <button type="button" class="btn btn-primary btn-lg btn-block">Jelentkezés</button><br>
-                    <button type="button" class="btn btn-dark btn-lg btn-block"
-                        (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
-                        aria-controls="collapseExample">Hozzászólás</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" (click)="modifyEvent()">Módosítás</button>
+                    <button type="button" class="btn btn-dark btn-lg btn-block" (click)="isCollapsed = !isCollapsed"
+                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Hozzászólás</button>
                     <div id="collapseExample" [ngbCollapse]="isCollapsed">
                         <div class="card collapseWindow shadow bg-secondary">
                             <div class="card-body">
                                 <textarea class="message" cols="30" rows="10"></textarea>
-                                <textarea class="userMessage" cols="30" rows="3" placeholder="Írd ide az üzeneted"></textarea>
+                                <textarea class="userMessage" cols="30" rows="3"
+                                    placeholder="Írd ide az üzeneted"></textarea>
                                 <button class="btn btn-primary">Küldés</button>
                             </div>
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
         </div>
     </div>
