@@ -41,23 +41,20 @@ img {
 
 .panel-transparent .panel-heading{
     background: rgba(252, 252, 252, 0.623)!important;
-    height: 200px;
+    height: 160px;
     width: 300px;
-    vertical-align: middle;
 }
 
 .carousel-caption {
     right: 20%;
-    text-align: left;
     max-width: 200px;
     left: auto;
-    padding: 5px;
     margin-bottom: 20px;
 }
 
 .panel-title {
     font-family: "Bodoni MT";
-    font-size: 25pt;
+    font-size: 30pt;
     color: rgb(39, 34, 104);
     text-align: center;
 }
@@ -66,4 +63,3 @@ a {
     text-decoration: underline;
     color: rgb(39, 34, 104);
 }
-

@@ -54,6 +54,6 @@ export class EventService {
       { event: e },
       { withCredentials: true }
     ).subscribe(resp => this.updateEvent(resp));
-  }
+  } //todo tesztelni kell még
 
 }

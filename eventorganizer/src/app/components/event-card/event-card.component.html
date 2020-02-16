@@ -3,28 +3,31 @@
         <div class="card-header">
             <h2>{{event.title}}</h2>
             <h5>Jelentkezők száma: 0/{{event.maxNumberOfPeople}} fő</h5>
-         </div>
+        </div>
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="assets/img/friends.JPG"><br>
+                <img
+                    src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBSwOOy.img?h=552&w=750&m=6&q=60&u=t&o=f&l=f">
                 <button class="btn btn-secondary">Kép feltöltése</button>
+                <button type="button" class="btn btn-warning"
+                        (click)="modifyEvent()">Esemény módosítása</button>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <!--h5 class="card-title">{{event.title}}</h5-->
-                    <p class="card-text">{{event.description}}</p>
-                    <p class="card-text"><small class="text-muted">Esemény időpontja: {{event.eventStartDate}}</small></p>
-                    <p class="card-text"><small class="text-muted">Létszám: min. {{event.minNumberOfPeople}} fő, max.
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Leírás:</span> {{event.description}}</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Esemény időpontja:</span> {{event.eventStartDate}}</small>
+                    </p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Létszám:</span> min. {{event.minNumberOfPeople}} fő, max.
                             {{event.maxNumberOfPeople}} fő</small></p>
-                    <p class="card-text"><small class="text-muted">Költségek: {{event.price}} Ft</small></p>
-                    <p class="card-text"><small class="text-muted">Kategória: {{event.categoryName}}</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Költségek:</span> {{event.price}} Ft</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Kategória:</span> {{event.categoryName}}</small></p>
                     <hr>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Jelentkezés</button><br>
-                    <button type="button" class="btn btn-warning btn-lg btn-block" (click)="modifyEvent()">Módosítás</button>
-                    <button type="button" class="btn btn-dark btn-lg btn-block" (click)="isCollapsed = !isCollapsed"
-                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Hozzászólás</button>
-                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
-                        <div class="card collapseWindow shadow bg-secondary">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Jelentkezés</button>
+                    <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">Hozzászólás</button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card shadow bg-secondary">
                             <div class="card-body">
                                 <textarea class="message" cols="30" rows="10"></textarea>
                                 <textarea class="userMessage" cols="30" rows="3"

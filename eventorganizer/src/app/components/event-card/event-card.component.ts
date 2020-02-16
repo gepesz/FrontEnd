@@ -10,8 +10,6 @@ import { ModifyEventComponent } from '../modify-event/modify-event.component';
 })
 export class EventCardComponent implements OnInit {
 
-  public isCollapsed = true;
-
   @Input()
   event: Event;
 
