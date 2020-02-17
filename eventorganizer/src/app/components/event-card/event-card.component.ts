@@ -18,9 +18,8 @@ export class EventCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  modifyEvent(){
-    this.modalService.open(ModifyEventComponent);
+  modifyEvent(): void{
+    const modalRef = this.modalService.open(ModifyEventComponent, { size: 'lg' });
+    modalRef.componentInstance.event = this.event;
   }
-
-
 }

@@ -32,21 +32,13 @@ export class NewEventComponent implements OnInit {
       maxNumberOfPeople: null,
       category: null
     };
-    //this.categories = [];
   }
 
   ngOnInit() {
-    this.http.get<any>(this.SERVER_URL).subscribe( cats => this.categories = cats.categories );
-    /*this.categorySubscription = this.catService.getCategory().subscribe(
-      cats => {
-        this.categories = cats;
-      }
-    )*/
+    this.catService.getCategories().subscribe( cats => {
+      this.categories = cats;
+    });
   }
-
-  /*ngOnDestroy(){
-    this.categorySubscription.unsubscribe();
-  }*/
 
   saveEvent(): void{
     if (typeof this.event.category !== 'object') {

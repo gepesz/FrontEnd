@@ -14,6 +14,7 @@ export class EventService {
 
   private events: BehaviorSubject<Event[]>;
   private readonly SERVER_URL = environment.serverUrl;
+
   constructor(private http: HttpClient) {
     this.events = new BehaviorSubject([]);
   }
@@ -50,10 +51,10 @@ export class EventService {
 
   public modifyEvent(id: number, e: Event): void {
     this.http.patch<EventResponse>(
-      this.SERVER_URL + 'events/modify/' + id,
+      this.SERVER_URL + '/events/modify/' + id,
       { event: e },
       { withCredentials: true }
     ).subscribe(resp => this.updateEvent(resp));
-  } //todo tesztelni kell még
+  }
 
 }
