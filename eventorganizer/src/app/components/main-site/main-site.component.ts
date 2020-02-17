@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../../interfaces/event';
-import { MainSiteEventsService } from '../../service/main-site-events.service';
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,23 +8,10 @@ import { Subscription } from 'rxjs';
 })
 export class MainSiteComponent implements OnInit {
 
-  events: Event[];
-  eventSubscription: Subscription;
-
-  constructor(private eventService: MainSiteEventsService) { 
-    this.events = [];
+  constructor() { 
   }
 
   ngOnInit() {
-    this.eventSubscription = this.eventService.getEvents().subscribe(
-      events => {
-        this.events = events;
-      }
-    )
-  }
-
-  ngOnDestroy() {
-    this.eventSubscription.unsubscribe();
   }
 
 }

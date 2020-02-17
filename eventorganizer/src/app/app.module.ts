@@ -20,6 +20,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { LogoutSuccessModalComponent } from './components/logout-success-modal/logout-success-modal.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { UserImageComponent } from './components/user-image/user-image.component';
+import { ModifyEventComponent } from './components/modify-event/modify-event.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { UserImageComponent } from './components/user-image/user-image.component
     MyProfileComponent,
     LogoutSuccessModalComponent,
     NewEventComponent,
-    UserImageComponent
+    UserImageComponent,
+    ModifyEventComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { UserImageComponent } from './components/user-image/user-image.component
   entryComponents: [
     LogInModalComponent,
     RegistrationModalComponent,
-    LogoutSuccessModalComponent
+    LogoutSuccessModalComponent,
+    ModifyEventComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

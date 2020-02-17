@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../../interfaces/event';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModifyEventComponent } from '../modify-event/modify-event.component';
 
 @Component({
   selector: 'div[app-event-card]',
@@ -11,9 +13,14 @@ export class EventCardComponent implements OnInit {
   @Input()
   event: Event;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
+
+  modifyEvent(){
+    this.modalService.open(ModifyEventComponent);
+  }
+
 
 }
