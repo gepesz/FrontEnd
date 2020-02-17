@@ -1,49 +1,54 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form (submit)="submit()" [formGroup]="form">
-                    <div class="modal-header">
-                        <h4 class="h4 mb-4">Esemény módosítása</h4>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputTitle">Esemény címe</label>
-                        <input type="text" class="form-control" name="title" formControlName="eventTitle">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescribe">Esemény leírása</label>
-                        <textarea type="text" class="form-control" rows="3" name="describe"
-                            formControlName="eventDescribe"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDate">Esemény időpontja</label>
-                        <input type="date" class="form-control" name="date" formControlName="eventDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLimit1">Létszám(min.)</label>
-                        <input type="number" class="form-control" name="min" formControlName="minLimit">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLimit2">Létszám(max.)</label>
-                        <input type="number" class="form-control" name="max" formControlName="maxLimit">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPrice">Költségek</label>
-                        <input type="number" class="form-control" name="price" formControlName="evetPrice">
-                    </div>
-                    <div class="form-group">
-                        <label class="mr-2" for="inputCategory">Kategória</label>
-                        <select class="custom-select my-1 mr-sm-2" name="category" formControlName="eventCategory">
-                            <option [value]="category.id" *ngFor="let category of categories">{{category.title}}
-                            </option>
-                        </select>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Mentés</button>
-                        <button type="button" class="btn btn-secondary"
-                            (click)="activeModal.close('Close click')">Mégsem</button>
-                    </div>
-            </form>
+<div class="modal-header">
+    <h4>Esemény módosítása</h4>
+</div>
+<div class="modal-body">
+    <form (submit)="submit()" [formGroup]="form">
+        <div class="form-group">
+            <label for="inputTitle">Esemény címe</label>
+            <input type="text" class="form-control" name="title" formControlName="title">
         </div>
-    </div>
+        <div class="form-group">
+            <label for="inputDescribe">Esemény leírása</label>
+            <textarea type="text" class="form-control" rows="3" name="describe" formControlName="describe"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputDate">Esemény időpontja</label>
+            <input type="date" class="form-control" name="date" formControlName="date">
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label for="inputLimit1">Létszám(min.)</label>
+                    <input type="number" class="form-control" name="min" formControlName="min">
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label for="inputLimit2">Létszám(max.)</label>
+                    <input type="number" class="form-control" name="max" formControlName="max">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label for="inputPrice">Költségek</label>
+                    <input type="number" class="form-control" name="price" formControlName="price">
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label class="mr-2" for="inputCategory">Kategória</label>
+                    <select class="custom-select my-1 mr-sm-2" name="category" formControlName="category">
+                        <option [value]="category.id" *ngFor="let category of categories">{{category.title}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Mentés</button>
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Mégsem</button>
+        </div>
+    </form>
 </div>

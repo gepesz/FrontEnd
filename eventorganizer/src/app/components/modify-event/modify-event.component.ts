@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from '../../interfaces/event';
 import { EventService } from '../../service/event.service';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from 'src/app/interfaces/category';
 
 @Component({
   selector: 'app-modify-event',
@@ -13,11 +15,16 @@ export class ModifyEventComponent implements OnInit {
 
   event: Event;
   form: FormGroup;
+  categories: Category[];
 
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private eventService: EventService) { }
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private eventService: EventService,
+    private catService: CategoryService) { }
 
   ngOnInit() {
     this.createForm();
+    this.catService.getCategories().subscribe(cats => {
+      this.categories = cats;
+    });
   }
 
   private createForm() {
@@ -32,12 +39,8 @@ export class ModifyEventComponent implements OnInit {
     });
   }
 
-  submit(): boolean {
-    if (this.form.valid) {
-      this.eventService.modifyEvent(this.event.id, this.form.value);
-      this.activeModal.close();
-    } else {
-      return false;
-    }
+  submit() {
+    this.eventService.modifyEvent(this.event.id, this.form.value);
+    this.activeModal.close();
   }
 }

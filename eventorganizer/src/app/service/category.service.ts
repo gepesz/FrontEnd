@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Category } from '../interfaces/category';
 import { CategoryReponse } from '../interfaces/category-reponse';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,16 @@ export class CategoryService {
     this.categories = new BehaviorSubject([]);
   }
 
-  getCategory(){
-    this.http.get<CategoryReponse>(this.SERVER_URL,{withCredentials: true})
-      .subscribe(resp => {this.updateEvents(resp);});
-    return this.categories;
+  getCategories(): Observable<Category[]>{
+    return this.http.get<CategoryReponse>(this.SERVER_URL,{withCredentials: true})
+      .pipe(
+        map( resp => resp.categories )
+      );
   }
 
   updateEvents(response: CategoryReponse) {
     if(response.success){
-      this.categories.next(response.category);
+      this.categories.next(response.categories);
     }
   }
 }
