@@ -17,7 +17,9 @@ export class LoginServiceService {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    
+  }
 
   logIn(uname: string, pwd: string): Observable<Object> {
     let fd = new FormData();

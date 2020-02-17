@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { EventService } from 'src/app/service/event.service';
 import { Event } from '../../interfaces/event';
+import { Filter } from 'src/app/interfaces/filter';
+import { Category } from 'src/app/interfaces/category';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-event-filter',
@@ -11,22 +14,34 @@ export class EventFilterComponent implements OnInit {
 
 
   events: Event[];
+  categories: Category[];
 
+  filter: Filter;
   saveEventTitle: string;
   startDate : Date;
   endDate : Date;
   categoryId: number;
+  @Output()
+  search: EventEmitter<Filter>;
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private categoryService: CategoryService) {
     this.events = [];
+    const endDate = new Date();
+    endDate.setMonth(endDate.getMonth() + 1);
+    this.filter = {
+      eventTitle : "",
+      startDate : (new Date()).toISOString().replace(/T.*$/, ''),
+      endDate : endDate.toISOString().replace(/T.*$/, ''),
+      categoryId : 0,
+    }
+    this.search = new EventEmitter();
   }
 
   ngOnInit() {
-    
+    this.categoryService.getCategories().subscribe( categories => this.categories = categories );
   }
   
-  onSearch(getEventTitle?: string, getStartDate?: Date, getEndDate?: Date, getCategoryId?: number){
-    this.eventService.getEventsByFilter(getEventTitle,getStartDate,getEndDate,getCategoryId).subscribe(resp => this.events = resp)
-    console.log(this.events)
+  onSearch(){
+    this.search.emit(this.filter);
   }
 }

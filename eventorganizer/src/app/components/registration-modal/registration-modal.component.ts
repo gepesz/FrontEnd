@@ -48,7 +48,7 @@ export class RegistrationModalComponent implements OnInit {
     this.userService
       .register(this.registerForm.value)
         .pipe(first())
-          .subscribe(data => { this.registrationSuccess = true ,setTimeout(function(){this.close()},2000)},
+          .subscribe(data => { this.registrationSuccess = true ,setTimeout(() => {this.close()},2000)},
                     error => { alert(error)});
   }
 

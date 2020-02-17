@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EventResponse } from '../interfaces/event-response';
 import { Event } from '../interfaces/event';
 import { environment } from 'src/environments/environment';
+import { Filter } from '../interfaces/filter';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -27,14 +29,18 @@ export class EventService {
     return this.events;
   }
 
-  getEventsByFilter(getEventTitle?: string, getStartDate?: string, getEndDate?: string, getCategoryId?: number): BehaviorSubject<Event[]> {
-    this.http.post<EventResponse>(this.SERVER_URL + "/eventfilter",
-      { "eventTitle": getEventTitle, "startDate": getStartDate, "endDate": getEndDate, "categoryId": getCategoryId },
-      { withCredentials: true })
-      .subscribe(resp => {
-        this.updateEvent(resp);
-      });
-    return this.events;
+  getEventsByFilter(filter : Filter): Observable<Event[]> {
+    const f = {
+      eventTitle : filter.eventTitle,
+      categoryId: + filter.categoryId,
+      startDate: filter.startDate,
+      endDate: filter.endDate,
+    };
+    return this.http.post<EventResponse>(this.SERVER_URL + "/filterevent",
+      f,
+      { withCredentials: true }
+    )
+    .pipe( map( resp => resp.events ) );
   }
 
   private updateEvent(response: EventResponse) {

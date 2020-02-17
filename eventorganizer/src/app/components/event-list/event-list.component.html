@@ -2,7 +2,7 @@
 <div class="container">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5 scroll">
-            <app-event-filter></app-event-filter>
+            <app-event-filter (search)="doSearch($event)"></app-event-filter>
             <div>
                 <h3 class="newEvent" *ngIf="isLoggedIn$ | async">Új esemény létrehozása</h3>
                 <button type="button" class="btn btn-dark" routerLink="/new-event" *ngIf="isLoggedIn$ | async">Létrehozás</button>

@@ -2,27 +2,24 @@
     <div class="form-row">
       <div class="form-group col-md-2">
         <label for="search">Keresés</label>
-        <input type="text" class="form-control" [(ngModel)]="eventTitle">
+        <input type="text" class="form-control" [(ngModel)]="filter.eventTitle">
       </div>
       <div class="form-group col-md-3">
         <label for="startDate">Intervallum kezdete</label>
-        <input type="date" class="form-control" [(ngModel)]="startDate">
+        <input type="date" class="form-control" [ngModel]="filter.startDate | date:'yyyy-MM-dd'" (ngModelChange)="filter.startDate = $event">
       </div>
       <div class="form-group col-md-3">
         <label for="endDate">Intervallum vége</label>
-        <input type="date" class="form-control" [(ngModel)]="endDate">
+        <input type="date" class="form-control" [ngModel]="filter.endDate | date:'yyyy-MM-dd'" (ngModelChange)="filter.endDate = $event">
       </div>
       <div class="form-group col-md-2">
         <label for="inputCategory">Kategóriák</label>
-        <select class="custom-select" [(ngModel)]="categoryId">
-            <option selected>Válassz...</option>
-            <option value="1">Kulturális</option>
-            <option value="2">Szabadidő</option>
-            <option value="3">Sport</option>
-            <option value="4">Turisztikai</option>
+        <select class="custom-select" [(ngModel)]="filter.categoryId">
+            <option value="0" selected>Válassz...</option>
+            <option value="{{ c.id }}" *ngFor="let c of categories">{{ c.title }}</option>
         </select>
       </div>
       <div class="form-group col-md-2">
-        <button class="btn btn-secondary btn-block my-4" (click) ="onSearch(eventTitle,startDate,endDate,categoryId.value)" >Keresés</button>
+        <button class="btn btn-secondary btn-block my-4" (click)="onSearch()" >Keresés</button>
       </div>
     </div>

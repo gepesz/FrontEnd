@@ -4,6 +4,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Event } from '../../interfaces/event';
 import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/service/login-service.service';
+import { Filter } from 'src/app/interfaces/filter';
 
 
 @Component({
@@ -30,5 +31,9 @@ export class EventListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.eventSubscription.unsubscribe();
+  }
+
+  doSearch(filter: Filter): void {
+    this.eventService.getEventsByFilter(filter).subscribe(resp => this.events = resp);
   }
 }
