@@ -15,11 +15,14 @@ export class RegistrationModalComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   loading = false;
+  registrationSuccess = false;
 
   constructor(private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private userService: UserService
-  ) { }
+  ) { 
+    this.activeModal = activeModal
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -45,11 +48,11 @@ export class RegistrationModalComponent implements OnInit {
     this.userService
       .register(this.registerForm.value)
         .pipe(first())
-          .subscribe(data => { this.activeModal.close()},
+          .subscribe(data => { this.registrationSuccess = true ,setTimeout(function(){this.close()},2000)},
                     error => { alert(error)});
   }
 
-  close() {
+  close():void {
     this.activeModal.close();
   }
 

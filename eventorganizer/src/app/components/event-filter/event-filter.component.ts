@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/service/event.service';
+import { Event } from '../../interfaces/event';
 
 @Component({
   selector: 'app-event-filter',
@@ -7,13 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventFilterComponent implements OnInit {
 
-  search: string;
 
-  constructor() {
-    this.search = '';
+  events: Event[];
+
+  saveEventTitle: string;
+  startDate : Date;
+  endDate : Date;
+  categoryId: number;
+
+  constructor(private eventService: EventService) {
+    this.events = [];
   }
 
   ngOnInit() {
+    
   }
-
+  
+  onSearch(getEventTitle?: string, getStartDate?: Date, getEndDate?: Date, getCategoryId?: number){
+    this.eventService.getEventsByFilter(getEventTitle,getStartDate,getEndDate,getCategoryId).subscribe(resp => this.events = resp)
+    console.log(this.events)
+  }
 }

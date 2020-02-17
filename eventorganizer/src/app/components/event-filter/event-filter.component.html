@@ -1,25 +1,28 @@
 <h3>Események szűrése</h3>
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <label for="search">Keresés</label>
-        <input type="text" class="form-control" id="search" [(ngModel)]="search">
+        <input type="text" class="form-control" [(ngModel)]="eventTitle">
       </div>
       <div class="form-group col-md-3">
         <label for="startDate">Intervallum kezdete</label>
-        <input type="date" class="form-control" id="startDate">
+        <input type="date" class="form-control" [(ngModel)]="startDate">
       </div>
       <div class="form-group col-md-3">
         <label for="endDate">Intervallum vége</label>
-        <input type="date" class="form-control" id="endDate">
+        <input type="date" class="form-control" [(ngModel)]="endDate">
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <label for="inputCategory">Kategóriák</label>
-        <select class="custom-select" id="inputCategory">
+        <select class="custom-select" [(ngModel)]="categoryId">
             <option selected>Válassz...</option>
             <option value="1">Kulturális</option>
             <option value="2">Szabadidő</option>
             <option value="3">Sport</option>
-            <option value="3">Turisztikai</option>
+            <option value="4">Turisztikai</option>
         </select>
+      </div>
+      <div class="form-group col-md-2">
+        <button class="btn btn-secondary btn-block my-4" (click) ="onSearch(eventTitle,startDate,endDate,categoryId.value)" >Keresés</button>
       </div>
     </div>

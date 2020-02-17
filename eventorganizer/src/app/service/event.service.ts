@@ -26,8 +26,10 @@ export class EventService {
     return this.events;
   }
 
-  getEventsByFilter(): BehaviorSubject<Event[]> {
-    this.http.post<EventResponse>(this.SERVER_URL + "/eventsfilter", { withCredentials: true })
+  getEventsByFilter(getEventTitle?: string, getStartDate?: string, getEndDate?: string, getCategoryId?: number): BehaviorSubject<Event[]> {
+    this.http.post<EventResponse>(this.SERVER_URL + "/eventfilter",
+      { "eventTitle": getEventTitle, "startDate": getStartDate, "endDate": getEndDate, "categoryId": getCategoryId },
+      { withCredentials: true })
       .subscribe(resp => {
         this.updateEvent(resp);
       });
