@@ -6,6 +6,9 @@ import { UserResponse } from '../interfaces/user-response';
 import { UsersResponse } from '../interfaces/users-response';
 import { environment } from 'src/environments/environment';
 import { PictureResponse } from '../interfaces/picture-response';
+import { VerifyResponse } from '../interfaces/verify-response';
+import { Verify } from '../interfaces/verify';
+
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +49,9 @@ export class UserService {
 
   sendPhoto(uploadData: FormData): Observable<PictureResponse>{
     return this.http.post<PictureResponse>(`${ environment.serverUrl }/createphoto`, uploadData, {withCredentials: true})
+  }
+
+  verifyEmail(verify: Verify): Observable<VerifyResponse>{
+    return this.http.post<VerifyResponse>(`${environment.serverUrl}/user/registrationConfirmation`, verify, {withCredentials:true})
   }
 }

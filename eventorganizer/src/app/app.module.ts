@@ -21,6 +21,7 @@ import { LogoutSuccessModalComponent } from './components/logout-success-modal/l
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { UserImageComponent } from './components/user-image/user-image.component';
 import { ModifyEventComponent } from './components/modify-event/modify-event.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ModifyEventComponent } from './components/modify-event/modify-event.com
     LogoutSuccessModalComponent,
     NewEventComponent,
     UserImageComponent,
-    ModifyEventComponent
+    ModifyEventComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

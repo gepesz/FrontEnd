@@ -7,6 +7,7 @@ import { MembersComponent } from './components/members/members.component';
 import { AuthGuard } from './guard/auth.guard';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'event-list', component:EventListComponent},
   {path: 'members', component: MembersComponent},
   {path: 'users/my-profile', component: MyProfileComponent},
-  {path: 'new-event', component: NewEventComponent}
+  {path: 'new-event', component: NewEventComponent},
+  {path: 'verify-email/:id/:token', component: VerifyEmailComponent}
 ];
 
 @NgModule({
