@@ -2,27 +2,35 @@
     <div class="card">
         <div class="card-header">
             <h3>{{event.title}}</h3>
-            <h5>Jelentkezők száma: 0/{{event.maxNumberOfPeople}} fő</h5>
+            <h5>Jelentkezők száma: {{event.currentUserJoinEvent}}/{{event.maxNumberOfPeople}} fő</h5>
         </div>
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img
-                    src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBSwOOy.img?h=552&w=750&m=6&q=60&u=t&o=f&l=f">
-                <button class="btn btn-secondary">Kép feltöltése</button>
-                <button type="button" class="btn btn-warning"
-                        (click)="modifyEvent()">Esemény módosítása</button>
+                <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
+                <div *ngIf="router.url === '/event-list'">
+                    <div class="pb-1"></div>
+                    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                    <button class="btn btn-secondary" (click)="fileInput.click()">Kép feltöltése</button>
+                </div>
+                <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Leírás:</span> {{event.description}}</small></p>
-                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Esemény időpontja:</span> {{event.eventStartDate}}</small>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Leírás:</span>
+                            {{event.description}}</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Esemény
+                                időpontja:</span> {{event.eventStartDate}}</small>
                     </p>
-                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Létszám:</span> min. {{event.minNumberOfPeople}} fő, max.
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Létszám:</span> min.
+                            {{event.minNumberOfPeople}} fő, max.
                             {{event.maxNumberOfPeople}} fő</small></p>
-                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Költségek:</span> {{event.price}} Ft</small></p>
-                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Kategória:</span> {{event.categoryName}}</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Költségek:</span>
+                            {{event.price}} Ft</small></p>
+                    <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Kategória:</span>
+                            {{event.categoryName}}</small></p>
                     <hr>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Jelentkezés</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="subscribeEvent()"
+                    [style.background-color]="toggle ? 'blue' : 'gray'">{{text}}</button>
                     <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false"
                         aria-controls="collapseExample">Hozzászólás</button>

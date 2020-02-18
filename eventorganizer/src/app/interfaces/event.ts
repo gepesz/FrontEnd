@@ -1,5 +1,6 @@
 export interface Event {
     id?:number;
+    pictureId?: number;
     userName?: string;
     eventStartDate?: Date;
     description?: string;
@@ -8,4 +9,6 @@ export interface Event {
     minNumberOfPeople?: number;
     maxNumberOfPeople?: number;
     categoryName?: string;
+    currentUserJoinEvent?: number;
+    isJoinedEvent?: boolean;
 }
