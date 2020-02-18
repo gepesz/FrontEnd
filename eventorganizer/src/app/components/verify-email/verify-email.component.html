@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div class="container">
+    <div class="d-flex justify-content-center my-5">
+        <h1 *ngIf="verifyCompleted != false && verifyCompleted != true">Egy pillanat...</h1>
+        <h1 *ngIf="verifyCompleted == false" class="text-danger">Nem sikerült :(</h1>
+        <h1 *ngIf="verifyCompleted == true" class="text-success">Sikeres :)</h1>
+    </div>
+</div>

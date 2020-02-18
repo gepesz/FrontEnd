@@ -15,12 +15,11 @@
             Események
         </button>
         <div id="collapseExample" [ngbCollapse]="isCollapsed">
-            <div class="card collapseWindow shadow bg-secondary">
-                <div class="card-body">
-                    <app-event-filter></app-event-filter>
+            
+                
                     <div app-event-card *ngFor="let event of myEvent" [event]="event"></div>
-                </div>
-            </div>
+                
+            
         </div>
         <p class="lead"></p>
         <p class="lead mb-0"></p>
