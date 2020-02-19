@@ -72,7 +72,7 @@ export class EventService {
     return this.http.post<PictureResponse>(`${ environment.serverUrl }/createeventpicture`, uploadData, {withCredentials: true})
   }
 
-  public joinEvent(id: number) {
+  public joinEvent(id: number): void {
     this.http.post<JoinEventResponse>(
       this.SERVER_URL + '/events/join/' + id, 
       {},
@@ -80,12 +80,20 @@ export class EventService {
     ).subscribe(resp => this.getEvents());
   }
 
-  public leaveEvent(id: number) {
+  public leaveEvent(id: number): void {
     this.http.post<LeaveEventResponse>(
       this.SERVER_URL + '/events/leave/' + id, 
       {},
       {withCredentials: true}
     ).subscribe(resp => this.getEvents());
+  }
+
+  public sendMessageToEvent(id: number, m: any){
+    this.http.post<EventResponse>(
+      this.SERVER_URL + '/events/' + id + '/createmessage',
+      m,
+      {withCredentials: true}
+    ).subscribe(resp => this.updateEvent(resp));
   }
 
 }

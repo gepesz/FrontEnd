@@ -5,6 +5,8 @@ import { ModifyEventComponent } from '../modify-event/modify-event.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EventService } from '../../service/event.service';
+import { Observable } from 'rxjs';
+import { LoginServiceService } from 'src/app/service/login-service.service';
 
 @Component({
   selector: 'div[app-event-card]',
@@ -15,16 +17,20 @@ export class EventCardComponent implements OnInit {
 
   private environment = environment;
   text: string = 'Feliratkozás';
-  toggle = true;
-   
+  isLoggedIn$: Observable<boolean>; 
+  loading: boolean;
 
   @Input()
   event: Event;
 
-  constructor(private modalService: NgbModal, private router: Router, private eventService: EventService) { }
+  constructor(private modalService: NgbModal, private router: Router, private eventService: EventService,
+    private loginService: LoginServiceService) {
+      this.loading = false;
+    }
 
   ngOnInit() {
     this.event.pictureId;
+    this.isLoggedIn$ = this.loginService.isLoggedIn;
   }
 
   modifyEvent(): void {
@@ -33,6 +39,7 @@ export class EventCardComponent implements OnInit {
   }
 
   onFileChanged(event) {
+    console.log(this.event);
     let uploadData = new FormData();
     uploadData.append('image', event.target.files[0]);
     this.eventService.sendPhoto(uploadData)
@@ -40,14 +47,16 @@ export class EventCardComponent implements OnInit {
         error => alert('Nem megfelelő formátumú a kép.'));
   }
 
-  public subscribeEvent(): void {
-    this.toggle = !this.toggle;
-    if (this.text === 'Feliratkozás') {
-      this.eventService.joinEvent(this.event.id);
-      this.text = 'Leiratkozás'
-    } else {
+  subscribeEvent(){
+    this.loading = true;
+    if (this.event.registeredForEvent) {
       this.eventService.leaveEvent(this.event.id);
-      this.text = 'Feliratkozás'
+    } else {
+      this.eventService.joinEvent(this.event.id);
     }
+  }
+
+  sendMessage(){
+    this.eventService.sendMessageToEvent(this.event.id, this.event.comments);
   }
 }

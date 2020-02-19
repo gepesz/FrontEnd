@@ -8,9 +8,9 @@
             <div *ngIf="router.url === '/event-list'">
                 <div class="pb-1"></div>
                 <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <button class="btn btn-secondary" (click)="fileInput.click()">Kép feltöltése</button>
+                <button class="btn btn-secondary" (click)="fileInput.click()" *ngIf="isLoggedIn$ | async">Kép feltöltése</button>
             </div>
-            <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
+            <button type="button" class="btn btn-warning" (click)="modifyEvent()" *ngIf="isLoggedIn$ | async">Esemény módosítása</button>
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -26,10 +26,13 @@
                         {{event.price}} Ft</small></p>
                 <p class="card-text"><small class="text-muted"><span class="font-weight-bold">Kategória:</span>
                         {{event.categoryName}}</small></p>
-                <h5>Jelentkezők száma: {{event.currentUserJoinEvent}}/{{event.maxNumberOfPeople}} fő</h5>
+                <h5>Jelentkezők száma: {{event.numberOfParticipants}}/{{event.maxNumberOfPeople}} fő</h5>
                 <hr>
-                <button type="button" class="btn btn-primary btn-lg btn-block" (click)="subscribeEvent()"
-                    [style.background-color]="toggle ? 'blue' : 'gray'">{{text}}</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" (click)='subscribeEvent()'
+                    [style.background-color]="toggle ? 'gray' : 'blue'" *ngIf="isLoggedIn$ | async" [disabled]="loading">
+                    <span *ngIf="event.registeredForEvent">Leiratkozás</span>
+                    <span *ngIf="!event.registeredForEvent">Feliratkozás</span>
+                </button>
                 <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="collapse"
                     data-target="#collapseExample" aria-expanded="false"
                     aria-controls="collapseExample">Hozzászólás</button>
@@ -39,7 +42,7 @@
                             <textarea class="message" cols="30" rows="10"></textarea>
                             <textarea class="userMessage" cols="30" rows="3"
                                 placeholder="Írd ide az üzeneted"></textarea>
-                            <button class="btn btn-primary">Küldés</button>
+                            <button class="btn btn-primary" (click)='sendMessage()'>Küldés</button>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+import { Comments } from './comments';
+
 export interface Event {
     id?:number;
     pictureId?: number;
@@ -9,6 +11,7 @@ export interface Event {
     minNumberOfPeople?: number;
     maxNumberOfPeople?: number;
     categoryName?: string;
-    currentUserJoinEvent?: number;
-    isJoinedEvent?: boolean;
+    numberOfParticipants?: number;
+    registeredForEvent?: boolean;
+    comments?: Comments[];
 }
