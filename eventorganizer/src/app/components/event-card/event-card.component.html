@@ -12,10 +12,10 @@
                 </div>
             </div>
                 <div class="p-2">
-            <button class="btn btn-secondary">Kép feltöltése</button>
+            <button class="btn btn-secondary" *ngIf="isLoggedIn$ | async" (click)="fileInput.click()">Kép feltöltése</button>
             </div>
             <div class="p-2">
-            <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
+            <button type="button" class="btn btn-warning" (click)="modifyEvent()" *ngIf="isLoggedIn$ | async">Esemény módosítása</button>
             </div>
             <div class="p-2">
                 <h4><ngb-rating class="align-self-center"[(rate)]="event.rating"></ngb-rating></h4>
@@ -39,7 +39,7 @@
                 <h5>Jelentkezők száma: {{event.numberOfParticipants}}/{{event.maxNumberOfPeople}} fő</h5>
                 <hr>
                 <button type="button" class="btn btn-primary btn-lg btn-block" (click)='subscribeEvent()'
-                    [style.background-color]="toggle ? 'gray' : 'blue'" *ngIf="isLoggedIn$ | async" [disabled]="loading">
+                     [disabled]="loading">
                     <span *ngIf="event.registeredForEvent">Leiratkozás</span>
                     <span *ngIf="!event.registeredForEvent">Feliratkozás</span>
                 </button>

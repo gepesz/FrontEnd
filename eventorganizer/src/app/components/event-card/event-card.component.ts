@@ -16,7 +16,6 @@ import { LoginServiceService } from 'src/app/service/login-service.service';
 export class EventCardComponent implements OnInit {
 
   private environment = environment;
-  text: string = 'Feliratkozás';
   isLoggedIn$: Observable<boolean>; 
   loading: boolean;
 
