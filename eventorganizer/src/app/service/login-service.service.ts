@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { UserResponse } from '../interfaces/user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class LoginServiceService {
   }
 
   constructor(private http: HttpClient, private router: Router) {
-    
+    this.http.get<UserResponse>(
+      this.SERVER_URL + '/currentuser',
+      {withCredentials: true}
+    ).subscribe(resp => this.loggedIn.next(true));
   }
 
   logIn(uname: string, pwd: string): Observable<Object> {

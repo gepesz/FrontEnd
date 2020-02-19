@@ -6,6 +6,9 @@ import { Event } from '../interfaces/event';
 import { environment } from 'src/environments/environment';
 import { Filter } from '../interfaces/filter';
 import { map } from 'rxjs/operators';
+import { PictureResponse } from '../interfaces/picture-response';
+import { JoinEventResponse } from '../interfaces/join-event-response';
+import { LeaveEventResponse } from '../interfaces/leave-event-response';
 
 
 @Injectable({
@@ -63,6 +66,26 @@ export class EventService {
       e,
       { withCredentials: true }
     ).subscribe(() => this.getEvents());
+  }
+
+  sendPhoto(uploadData: FormData): Observable<PictureResponse>{
+    return this.http.post<PictureResponse>(`${ environment.serverUrl }/createeventpicture`, uploadData, {withCredentials: true})
+  }
+
+  public joinEvent(id: number) {
+    this.http.post<JoinEventResponse>(
+      this.SERVER_URL + '/events/join/' + id, 
+      {},
+      {withCredentials: true}
+    ).subscribe(resp => this.getEvents());
+  }
+
+  public leaveEvent(id: number) {
+    this.http.post<LeaveEventResponse>(
+      this.SERVER_URL + '/events/leave/' + id, 
+      {},
+      {withCredentials: true}
+    ).subscribe(resp => this.getEvents());
   }
 
 }
