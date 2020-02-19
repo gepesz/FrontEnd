@@ -54,4 +54,8 @@ export class UserService {
   verifyEmail(verify: Verify): Observable<VerifyResponse>{
     return this.http.post<VerifyResponse>(`${environment.serverUrl}/user/registrationConfirmation`, verify, {withCredentials:true})
   }
+
+  /*getCurrentUser():Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${environment.serverUrl}/currentuser`, {withCredentials:true});
+  }*/
 }

@@ -12,8 +12,6 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class EventFilterComponent implements OnInit {
 
-
-  events: Event[];
   categories: Category[];
 
   filter: Filter;
@@ -21,11 +19,11 @@ export class EventFilterComponent implements OnInit {
   startDate : Date;
   endDate : Date;
   categoryId: number;
+  
   @Output()
   search: EventEmitter<Filter>;
 
   constructor(private eventService: EventService, private categoryService: CategoryService) {
-    this.events = [];
     const endDate = new Date();
     endDate.setMonth(endDate.getMonth() + 1);
     this.filter = {

@@ -7,5 +7,8 @@ export interface Event {
     price?: number;
     minNumberOfPeople?: number;
     maxNumberOfPeople?: number;
+    numberOfPeopleSignedUp?:number;
     categoryName?: string;
+    rating?:number;
+    pastEvent?:boolean;
 }
