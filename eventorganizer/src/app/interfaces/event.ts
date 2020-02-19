@@ -10,8 +10,11 @@ export interface Event {
     price?: number;
     minNumberOfPeople?: number;
     maxNumberOfPeople?: number;
+    numberOfPeopleSignedUp?:number;
     categoryName?: string;
     numberOfParticipants?: number;
     registeredForEvent?: boolean;
     comments?: Comments[];
+    rating?:number;
+    pastEvent?:boolean;
 }

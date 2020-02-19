@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../../interfaces/event';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ModifyEventComponent } from '../modify-event/modify-event.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -24,8 +24,10 @@ export class EventCardComponent implements OnInit {
   event: Event;
 
   constructor(private modalService: NgbModal, private router: Router, private eventService: EventService,
-    private loginService: LoginServiceService) {
+    private loginService: LoginServiceService, private rating: NgbRatingConfig) {
       this.loading = false;
+      rating.max = 5;
+      rating.readonly = true;
     }
 
   ngOnInit() {

@@ -3,14 +3,24 @@
         <h3>{{event.title}}</h3>
     </div>
     <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
-            <div *ngIf="router.url === '/event-list'">
-                <div class="pb-1"></div>
-                <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <button class="btn btn-secondary" (click)="fileInput.click()" *ngIf="isLoggedIn$ | async">Kép feltöltése</button>
+        <div class="col-md-4 d-flex align-items-center flex-column">
+            <div class="p-2 my-2">
+                <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
+                <div *ngIf="router.url === '/event-list'">
+                    <div class="pb-1"></div>
+                    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                </div>
             </div>
-            <button type="button" class="btn btn-warning" (click)="modifyEvent()" *ngIf="isLoggedIn$ | async">Esemény módosítása</button>
+                <div class="p-2">
+            <button class="btn btn-secondary">Kép feltöltése</button>
+            </div>
+            <div class="p-2">
+            <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
+            </div>
+            <div class="p-2">
+                <h4><ngb-rating class="align-self-center"[(rate)]="event.rating"></ngb-rating></h4>
+                <pre>Értékelés: <b>{{event.rating}}</b></pre>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -34,9 +44,9 @@
                     <span *ngIf="!event.registeredForEvent">Feliratkozás</span>
                 </button>
                 <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="collapse"
-                    data-target="#collapseExample" aria-expanded="false"
+                    attr.data-target="#collapseExample-{{event.id}}" aria-expanded="false"
                     aria-controls="collapseExample">Hozzászólás</button>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample-{{event.id}}">
                     <div class="card shadow bg-secondary">
                         <div class="card-body">
                             <textarea class="message" cols="30" rows="10"></textarea>

@@ -37,7 +37,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.myEvent
   }
 
+  ngOnDestroy(){
+    this.eventservice;
+  }
 }
