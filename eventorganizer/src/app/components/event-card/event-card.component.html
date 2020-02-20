@@ -7,12 +7,14 @@
             <div class="p-2 my-2">
                 <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
             </div>
-            <div class="p-2" *ngIf="route.snapshot.data?.isEventList && (isLoggedIn$ | async) && (currentUser$ | async)?.username == event.userName">
-                <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <button class="btn btn-secondary" (click)="fileInput.click()">Kép feltöltése</button>
-            </div>
-            <div class="p-2" *ngIf="(isLoggedIn$ | async) && (currentUser$ | async)?.username == event.userName">
-            <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
+            <div *ngIf="(isLoggedIn$ | async) && (currentUser$ | async)?.username == event.userName">
+                <div class="p-2" *ngIf="route.snapshot.data?.isEventList">
+                    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                    <button class="btn btn-secondary" (click)="fileInput.click()">Kép feltöltése</button>
+                </div>
+                <div class="p-2">
+                    <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
+                </div>
             </div>
             <div class="p-2">
                 <div *ngIf="!setRatingSystem && event.pastEvent">
@@ -21,7 +23,7 @@
                     </h4>
                     <pre>Értékelés: <b>{{event.rating}}</b></pre>
                 </div>
-                <div *ngIf="setRatingSystem && isLoggedIn$ | async">
+                <div *ngIf="setRatingSystem && (isLoggedIn$ | async) && (currentUser$ | async)?.username != event.userName">
                     <h4>
                         <ngb-rating [(rate)]="selected" (hover)="selected=$event" [readonly]="readonly"></ngb-rating>
                     </h4>
@@ -52,7 +54,7 @@
                         <span *ngIf="event.registeredForEvent">Leiratkozás</span>
                         <span *ngIf="!event.registeredForEvent">Feliratkozás</span>
                     </button>
-                    <button *ngIf="event.pastEvent == true " type="button" class="btn btn-primary btn-lg btn-block"
+                    <button *ngIf="event.pastEvent == true && (isLoggedIn$ | async) && (currentUser$ | async)?.username != event.userName" type="button" class="btn btn-primary btn-lg btn-block"
                         (click)='swapRating()' [disabled]="loading">
                         <span *ngIf="!setRatingSystem">Hány csillagra értékeled az eventet?</span>
                         <span *ngIf="setRatingSystem">Kattints a csillagora az értékeléshez!</span>
@@ -64,9 +66,9 @@
                         <div class="card shadow bg-secondary">
                             <div class="card-body">
                                 <p *ngFor="let c of event.comments"><b>{{c.from}}:</b> {{c.text}}</p>
-                            <textarea class="userMessage" cols="30" rows="3"
-                                placeholder="Írd ide az üzeneted" [(ngModel)]="comments.text"></textarea>
-                            <button class="btn btn-primary" (click)='sendMessage()'>Küldés</button>
+                                <textarea class="userMessage" cols="30" rows="3" placeholder="Írd ide az üzeneted"
+                                    [(ngModel)]="comments.text"></textarea>
+                                <button class="btn btn-primary" (click)='sendMessage()'>Küldés</button>
                             </div>
                         </div>
                     </div>
