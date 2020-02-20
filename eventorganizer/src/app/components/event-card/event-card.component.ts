@@ -1,12 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Event } from '../../interfaces/event';
 import { NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ModifyEventComponent } from '../modify-event/modify-event.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EventService } from '../../service/event.service';
 import { Observable } from 'rxjs';
 import { LoginServiceService } from 'src/app/service/login-service.service';
+import { Comments } from 'src/app/interfaces/comments';
 
 @Component({
   selector: 'div[app-event-card]',
@@ -20,17 +21,21 @@ export class EventCardComponent implements OnInit {
   loading: boolean;
   setRatingSystem: boolean;
   selected = 0;
+  comments: Comments;
 
   @Input()
   event: Event;
+ 
 
-  constructor(private modalService: NgbModal, private router: Router, private eventService: EventService,
+  constructor(private modalService: NgbModal, private eventService: EventService, public route: ActivatedRoute,
     private loginService: LoginServiceService, private rating: NgbRatingConfig) {
       this.loading = false;
       rating.max = 5;
       rating.readonly = true;
       this.setRatingSystem = false;
+      this.comments = {};
     }
+
 
   ngOnInit() {
     this.event;
@@ -61,7 +66,7 @@ export class EventCardComponent implements OnInit {
   }
 
   sendMessage(){
-    this.eventService.sendMessageToEvent(this.event.id, this.event.comments);
+    this.eventService.sendMessageToEvent(this.event.id, this.comments);
   }
 
   swapRating():void {
