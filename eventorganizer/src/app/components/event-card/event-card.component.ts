@@ -18,6 +18,8 @@ export class EventCardComponent implements OnInit {
   private environment = environment;
   isLoggedIn$: Observable<boolean>; 
   loading: boolean;
+  setRatingSystem: boolean;
+  selected = 0;
 
   @Input()
   event: Event;
@@ -27,10 +29,11 @@ export class EventCardComponent implements OnInit {
       this.loading = false;
       rating.max = 5;
       rating.readonly = true;
+      this.setRatingSystem = false;
     }
 
   ngOnInit() {
-    this.event.pictureId;
+    this.event;
     this.isLoggedIn$ = this.loginService.isLoggedIn;
   }
 
@@ -59,5 +62,15 @@ export class EventCardComponent implements OnInit {
 
   sendMessage(){
     this.eventService.sendMessageToEvent(this.event.id, this.event.comments);
+  }
+
+  swapRating():void {
+    this.setRatingSystem == false ? this.setRatingSystem = true : this.setRatingSystem = false;
+    this.rating.readonly == false ? this.rating.readonly = true : this.rating.readonly = false;
+  }
+
+  sendTheRate():void{
+    this.eventService.sendRatingEvent(this.event.id,this.selected).subscribe(success => this.swapRating(),
+      error => this.swapRating());
   }
 }
