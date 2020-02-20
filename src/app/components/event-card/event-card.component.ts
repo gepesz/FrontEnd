@@ -20,6 +20,8 @@ export class EventCardComponent implements OnInit {
   public environment = environment;
   isLoggedIn$: Observable<boolean>; 
   loading: boolean;
+  setRatingSystem: boolean;
+  selected = 0;
   //comments: Comments;
   currentUser$: BehaviorSubject<User>;
 
@@ -32,6 +34,7 @@ export class EventCardComponent implements OnInit {
       this.loading = false;
       rating.max = 5;
       rating.readonly = true;
+      this.setRatingSystem = false;
       this.comments = {};
     }
 
@@ -50,6 +53,7 @@ export class EventCardComponent implements OnInit {
   onFileChanged(event) {
     let uploadData = new FormData();
     uploadData.append('image', event.target.files[0]);
+    uploadData.append('eventId', this.event.id.toString());
     this.eventService.sendPhoto(uploadData)
       .subscribe(resp => this.event.pictureId = resp.picture.id,
         error => alert('Nem megfelelő formátumú a kép.'));
@@ -66,5 +70,15 @@ export class EventCardComponent implements OnInit {
 
   sendMessage(){
     this.eventService.sendMessageToEvent(this.event.id, this.comments);
+  }
+
+  swapRating():void {
+    this.setRatingSystem == false ? this.setRatingSystem = true : this.setRatingSystem = false;
+    this.rating.readonly == false ? this.rating.readonly = true : this.rating.readonly = false;
+  }
+
+  sendTheRate():void{
+    this.eventService.sendRatingEvent(this.event.id,this.selected).subscribe(success => this.swapRating(),
+      error => console.log(error));
   }
 }

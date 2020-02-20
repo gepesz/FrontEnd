@@ -97,4 +97,8 @@ export class EventService {
     ).subscribe(resp => this.getEvents());
   }
 
+  public sendRatingEvent(eventId:number, rated: number): Observable<Response>{
+    return this.http.post<Response>(
+      this.SERVER_URL + '/events/rate/'+ eventId +'/' + rated , {withCredentials: true})  
+  }
 }
