@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { PictureResponse } from '../interfaces/picture-response';
 import { JoinEventResponse } from '../interfaces/join-event-response';
 import { LeaveEventResponse } from '../interfaces/leave-event-response';
+import { Comments } from '../interfaces/comments';
 
 
 @Injectable({
@@ -69,7 +70,7 @@ export class EventService {
   }
 
   sendPhoto(uploadData: FormData): Observable<PictureResponse>{
-    return this.http.post<PictureResponse>(`${ environment.serverUrl }/createeventpicture`, uploadData, {withCredentials: true})
+    return this.http.post<PictureResponse>(`${ environment.serverUrl }/createeventphoto`, uploadData, {withCredentials: true})
   }
 
   public joinEvent(id: number): void {
@@ -88,12 +89,12 @@ export class EventService {
     ).subscribe(resp => this.getEvents());
   }
 
-  public sendMessageToEvent(id: number, m: any){
+  public sendMessageToEvent(id: number, m: Comments){
     this.http.post<EventResponse>(
       this.SERVER_URL + '/events/' + id + '/createmessage',
       m,
       {withCredentials: true}
-    ).subscribe(resp => this.updateEvent(resp));
+    ).subscribe(resp => {this.updateEvent(resp), this.getEvents()});
   }
 
 }

@@ -6,13 +6,10 @@
         <div class="col-md-4 d-flex align-items-center flex-column">
             <div class="p-2 my-2">
                 <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
-                <div *ngIf="router.url === '/event-list'">
-                    <div class="pb-1"></div>
-                    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                </div>
             </div>
-                <div class="p-2">
-            <button class="btn btn-secondary" *ngIf="isLoggedIn$ | async" (click)="fileInput.click()">Kép feltöltése</button>
+            <div class="p-2" *ngIf="route.snapshot.data?.isEventList">
+                <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                <button class="btn btn-secondary" *ngIf="isLoggedIn$ | async" (click)="fileInput.click()">Kép feltöltése</button>
             </div>
             <div class="p-2">
             <button type="button" class="btn btn-warning" (click)="modifyEvent()" *ngIf="isLoggedIn$ | async">Esemény módosítása</button>
@@ -49,9 +46,9 @@
                 <div class="collapse" id="collapseExample-{{event.id}}">
                     <div class="card shadow bg-secondary">
                         <div class="card-body">
-                            <textarea class="message" cols="30" rows="10"></textarea>
+                            <p>{{comments.from}}: {{comments.text}}</p>
                             <textarea class="userMessage" cols="30" rows="3"
-                                placeholder="Írd ide az üzeneted"></textarea>
+                                placeholder="Írd ide az üzeneted" [(ngModel)]="comments.text"></textarea>
                             <button class="btn btn-primary" (click)='sendMessage()'>Küldés</button>
                         </div>
                     </div>
