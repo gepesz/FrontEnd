@@ -38,7 +38,7 @@ export class EventCardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.event;
+    this.event.pictureId;
     this.isLoggedIn$ = this.loginService.isLoggedIn;
   }
 
@@ -48,9 +48,9 @@ export class EventCardComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    console.log(this.event);
     let uploadData = new FormData();
     uploadData.append('image', event.target.files[0]);
+    uploadData.append('eventId', this.event.id.toString());
     this.eventService.sendPhoto(uploadData)
       .subscribe(resp => this.event.pictureId = resp.picture.id,
         error => alert('Nem megfelelő formátumú a kép.'));
@@ -76,6 +76,6 @@ export class EventCardComponent implements OnInit {
 
   sendTheRate():void{
     this.eventService.sendRatingEvent(this.event.id,this.selected).subscribe(success => this.swapRating(),
-      error => this.swapRating());
+      error => console.log(error));
   }
 }

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]},
   {path: 'home', component: MainSiteComponent},
   {path: 'users/:id/user-profile', component: UserProfileComponent},
-  {path: 'event-list', component:EventListComponent, data: { isEventList: true }},
+  {path: 'event-list', component:EventListComponent, data: { isEventList : true }},
   {path: 'members', component: MembersComponent},
   {path: 'users/my-profile', component: MyProfileComponent},
   {path: 'new-event', component: NewEventComponent},
