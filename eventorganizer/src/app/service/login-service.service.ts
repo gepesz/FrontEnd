@@ -14,7 +14,7 @@ export class LoginServiceService {
   private readonly SERVER_URL = environment.serverUrl;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
-  public currentUser: Observable<User>;
+  public currentUser: BehaviorSubject<User>;
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();

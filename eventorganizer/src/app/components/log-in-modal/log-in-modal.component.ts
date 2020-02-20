@@ -40,7 +40,7 @@ export class LogInModalComponent implements OnInit {
           this.router.navigateByUrl("/home");
           this.activeModal.close();
           this.loginService.setLoggedIn(true);
-        }, //???
+        },
         error => this.error = error);
   }
 
