@@ -5,9 +5,10 @@ import { ModifyEventComponent } from '../modify-event/modify-event.component';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EventService } from '../../service/event.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { LoginServiceService } from 'src/app/service/login-service.service';
 import { Comments } from 'src/app/interfaces/comments';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'div[app-event-card]',
@@ -16,16 +17,17 @@ import { Comments } from 'src/app/interfaces/comments';
 })
 export class EventCardComponent implements OnInit {
 
-  private environment = environment;
+  public environment = environment;
   isLoggedIn$: Observable<boolean>; 
   loading: boolean;
   setRatingSystem: boolean;
   selected = 0;
-  comments: Comments;
+  //comments: Comments;
+  currentUser$: BehaviorSubject<User>;
 
   @Input()
   event: Event;
- 
+  comments: Comments;
 
   constructor(private modalService: NgbModal, private eventService: EventService, public route: ActivatedRoute,
     private loginService: LoginServiceService, private rating: NgbRatingConfig) {
@@ -40,6 +42,7 @@ export class EventCardComponent implements OnInit {
   ngOnInit() {
     this.event.pictureId;
     this.isLoggedIn$ = this.loginService.isLoggedIn;
+    this.currentUser$ = this.loginService.currentUser;
   }
 
   modifyEvent(): void {

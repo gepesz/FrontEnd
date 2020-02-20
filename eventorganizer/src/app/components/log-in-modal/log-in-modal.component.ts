@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginServiceService } from 'src/app/service/login-service.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class LogInModalComponent implements OnInit {
         resp => {
           this.router.navigateByUrl("/home");
           this.activeModal.close();
-          this.loginService.setLoggedIn(true);
+          this.loginService.setLoggedIn(true, null);
         },
         error => this.error = error);
   }

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./verify-email.component.scss']
 })
 export class VerifyEmailComponent implements OnInit {
-  private verifyCompleted :boolean;
+  public verifyCompleted :boolean;
   private verify: Verify;
   constructor(private route: ActivatedRoute,private userService: UserService) { 
     this.verify = {

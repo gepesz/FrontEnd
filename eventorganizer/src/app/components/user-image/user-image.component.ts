@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class UserImageComponent implements OnInit {
 
-  private environment = environment
+  public environment = environment
   @Input()
   user: User;
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService,public router: Router) { }
 
   ngOnInit() {
     this.user.pictureId;
