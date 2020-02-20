@@ -11,7 +11,7 @@ import { User } from '../interfaces/user';
 })
 export class LoginServiceService {
 
-  private readonly SERVER_URL = environment.serverUrl +  "/login";
+  private readonly SERVER_URL = environment.serverUrl;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   public currentUser: Observable<User>;
@@ -28,7 +28,7 @@ export class LoginServiceService {
     this.http.get<UserResponse>(
       this.SERVER_URL + '/currentuser',
       {withCredentials: true}
-    ).subscribe(resp => this.loggedIn.next(resp.success) );
+    ).subscribe(resp => this.setLoggedIn(resp.success) );
   }
 
   logIn(uname: string, pwd: string): Observable<Object> {
@@ -36,7 +36,7 @@ export class LoginServiceService {
     fd.append('username', uname);
     fd.append('password', pwd);
     return this.http.post<Object>(
-      this.SERVER_URL,
+      this.SERVER_URL +  "/login",
       fd,
       { withCredentials: true },
     );
@@ -47,8 +47,8 @@ export class LoginServiceService {
     this.router.navigateByUrl("/home");
   }
 
-  getLogIn(){
-    this.loggedIn.next(true);
+  setLoggedIn(loggedIn: boolean): void{
+    this.loggedIn.next(loggedIn);
   }
 
 }
