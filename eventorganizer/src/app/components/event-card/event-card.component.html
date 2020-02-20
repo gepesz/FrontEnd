@@ -7,12 +7,12 @@
             <div class="p-2 my-2">
                 <img src="{{environment.serverUrl}}/events/picture/{{event.pictureId}}">
             </div>
-            <div class="p-2" *ngIf="route.snapshot.data?.isEventList">
+            <div class="p-2" *ngIf="route.snapshot.data?.isEventList && (isLoggedIn$ | async) && (currentUser$ | async)?.username == event.userName">
                 <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <button class="btn btn-secondary" *ngIf="isLoggedIn$ | async" (click)="fileInput.click()">Kép feltöltése</button>
+                <button class="btn btn-secondary" (click)="fileInput.click()">Kép feltöltése</button>
             </div>
-            <div class="p-2">
-            <button type="button" class="btn btn-warning" (click)="modifyEvent()" *ngIf="isLoggedIn$ | async">Esemény módosítása</button>
+            <div class="p-2" *ngIf="(isLoggedIn$ | async) && (currentUser$ | async)?.username == event.userName">
+            <button type="button" class="btn btn-warning" (click)="modifyEvent()">Esemény módosítása</button>
             </div>
             <div class="p-2">
                 <h4><ngb-rating class="align-self-center"[(rate)]="event.rating"></ngb-rating></h4>
@@ -46,7 +46,7 @@
                 <div class="collapse" id="collapseExample-{{event.id}}">
                     <div class="card shadow bg-secondary">
                         <div class="card-body">
-                            <p>{{comments.from}}: {{comments.text}}</p>
+                            <p *ngFor="let c of event.comments"><b>{{c.from}}:</b> {{c.text}}</p>
                             <textarea class="userMessage" cols="30" rows="3"
                                 placeholder="Írd ide az üzeneted" [(ngModel)]="comments.text"></textarea>
                             <button class="btn btn-primary" (click)='sendMessage()'>Küldés</button>

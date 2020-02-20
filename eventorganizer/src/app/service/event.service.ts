@@ -89,12 +89,12 @@ export class EventService {
     ).subscribe(resp => this.getEvents());
   }
 
-  public sendMessageToEvent(id: number, m: Comments){
+  public sendMessageToEvent(id: number, m: Comments): void{
     this.http.post<EventResponse>(
       this.SERVER_URL + '/events/' + id + '/createmessage',
       m,
       {withCredentials: true}
-    ).subscribe(resp => {this.updateEvent(resp), this.getEvents()});
+    ).subscribe(resp => this.getEvents());
   }
 
 }
